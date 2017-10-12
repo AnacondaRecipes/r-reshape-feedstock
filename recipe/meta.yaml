@@ -1,4 +1,4 @@
-{% set version = '0.8.6' %}
+{% set version = '0.8.7' %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -12,40 +12,76 @@ source:
   url:
     - https://cran.r-project.org/src/contrib/reshape_{{ version }}.tar.gz
     - https://cran.r-project.org/src/contrib/Archive/reshape/reshape_{{ version }}.tar.gz
-  sha256: d89db98ea1025e38d59daeff965dd8174bbb94a961cb966a83760ac1a87a36b8
+  sha256: 2fa6c87d1e89f182e51bc5a4fcda3d42d83b8fb4474ca525fa7a8db5081f3992
+
+
+  # patches:
+   # List any patch files here
+   # - fix.patch
 
 build:
+  # If this is a new build for the same version, increment the build number.
   number: 0
-  skip: true  # [win32]
 
+  # This is required to make R link correctly on Linux.
   rpaths:
     - lib/R/lib/
     - lib/
+
+
 requirements:
   build:
     - r-base
     - r-plyr
-    - posix                # [win]
-    - {{native}}toolchain  # [win]
-    - gcc                  # [not win]
 
   run:
     - r-base
     - r-plyr
-    - libgcc  # [not win]
 
 test:
   commands:
-    - $R -e "library('reshape')"  # [not win]
+    # You can put additional test commands to be run here.
+    - $R -e "library('reshape')"           # [not win]
     - "\"%R%\" -e \"library('reshape')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
 
 about:
   home: http://had.co.nz/reshape
-  license: MIT
-  summary: Flexibly restructure and aggregate data using just melt() and cast().
+  license: MIT + file LICENSE
+  summary: 'Flexibly restructure and aggregate data using  just two functions: melt and cast.'
+
   license_family: MIT
 
 extra:
   recipe-maintainers:
     - johanneskoester
     - bgruening
+    - mingwandroid
+
+# The original CRAN metadata for this package was:
+
+# Package: reshape
+# Version: 0.8.7
+# Title: Flexibly Reshape Data
+# Description: Flexibly restructure and aggregate data using  just two functions: melt and cast.
+# Authors@R:  person("Hadley", "Wickham", , "hadley@rstudio.com", c("aut", "cre"))
+# URL: http://had.co.nz/reshape
+# Depends: R (>= 2.6.1)
+# Imports: plyr
+# License: MIT + file LICENSE
+# LazyData: true
+# NeedsCompilation: yes
+# Packaged: 2017-08-04 16:36:57 UTC; hadley
+# Author: Hadley Wickham [aut, cre]
+# Maintainer: Hadley Wickham <hadley@rstudio.com>
+# Repository: CRAN
+# Date/Publication: 2017-08-06 16:08:19 UTC
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
