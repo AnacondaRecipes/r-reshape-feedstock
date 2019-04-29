@@ -1,4 +1,4 @@
-{% set version = '0.8.7' %}
+{% set version = '0.8.8' %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -11,7 +11,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/reshape_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/reshape/reshape_{{ version }}.tar.gz
-  sha256: 2fa6c87d1e89f182e51bc5a4fcda3d42d83b8fb4474ca525fa7a8db5081f3992
+  sha256: 4d5597fde8511e8fe4e4d1fd7adfc7ab37ff41ac68c76a746f7487d7b106d168
 
 build:
   merge_build_host: True  # [win]
@@ -63,7 +63,7 @@ extra:
 # The original CRAN metadata for this package was:
 
 # Package: reshape
-# Version: 0.8.7
+# Version: 0.8.8
 # Title: Flexibly Reshape Data
 # Description: Flexibly restructure and aggregate data using  just two functions: melt and cast.
 # Authors@R:  person("Hadley", "Wickham", , "hadley@rstudio.com", c("aut", "cre"))
@@ -73,11 +73,11 @@ extra:
 # License: MIT + file LICENSE
 # LazyData: true
 # NeedsCompilation: yes
-# Packaged: 2017-08-04 16:36:57 UTC; hadley
+# Packaged: 2018-10-23 18:21:49 UTC; hadley
 # Author: Hadley Wickham [aut, cre]
 # Maintainer: Hadley Wickham <hadley@rstudio.com>
 # Repository: CRAN
-# Date/Publication: 2017-08-06 16:08:19 UTC
+# Date/Publication: 2018-10-23 18:50:03 UTC
 
 # See
 # http://docs.continuum.io/conda/build.html for
